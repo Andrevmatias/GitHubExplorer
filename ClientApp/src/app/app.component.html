@@ -1,11 +1,19 @@
 <body>
   <header>
-    <h1>GitHub Explorer</h1>
+    <nav class="navbar navbar-light bg-light">
+      <a class="navbar-brand" href="/">
+        <img src="/github_logo.png" width="60" height="60" class="d-inline-block align-top" alt="GitHub Explorer Logo">
+        <h1 id="app-name" class="navbar-brand">GitHub Explorer</h1>
+      </a>
+    </nav>
   </header>
   <div class="container">
     <router-outlet></router-outlet>
   </div>
-  <footer>
-    <small>Desenvolvido por André Victória Matias</small>
+
+  <footer class="bg-light">
+    <p>
+      <small>Desenvolvido por André Victória Matias</small>
+    </p>
   </footer>
 </body>
