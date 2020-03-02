@@ -30,4 +30,4 @@ RUN dotnet publish "GitHubExplorer.csproj" -c Release -o /app/publish
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-CMD ASPNETCORE_URLS=http://*:$PORT dotnet Project.dll
+CMD ASPNETCORE_URLS=http://*:$PORT dotnet GitHubExplorer.dll
