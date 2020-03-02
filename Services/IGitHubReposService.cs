@@ -1,6 +1,6 @@
 ﻿namespace GitHubExplorer.Services
 {
-    public interface IGitReposService
+    public interface IGitHubReposService
     {
     }
 }

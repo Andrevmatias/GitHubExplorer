@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace GitHubExplorer.Models
 {
-    public class GitRepo
+    public class GitHubRepo
     {
         public string Id { get; set; }
         public string Name { get; set; }
@@ -15,6 +15,6 @@ namespace GitHubExplorer.Models
         public int OpenIssuesCount { get; set; }
         public string MainLanguage { get; set; }
         public DateTime CreationDate { get; set; }
-        public IList<GitRepoListItem> AuthorRepos { get; set; }
+        public IList<GitHubRepoListItem> AuthorRepos { get; set; }
     }
 }

@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace GitHubExplorer.Models
 {
-    public class GitRepoListItem
+    public class GitHubRepoListItem
     {
         public string Id { get; set; }
         public string Name { get; set; }
