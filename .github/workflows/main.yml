@@ -8,6 +8,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: setup-docker
+        uses: docker-practice/actions-setup-docker@0.0.1
+        
       - uses: actions/heroku@1.0.0
       - name: Login to Heroku Container Registry
         env: 
