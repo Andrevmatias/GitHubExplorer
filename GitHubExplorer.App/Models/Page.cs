@@ -48,15 +48,15 @@ namespace GitHubExplorer.Models
         /// <summary>
         /// Construtor da página
         /// </summary>
-        /// <param name="itens">Itens da página</param>
+        /// <param name="items">Itens da página</param>
         /// <param name="number">Número dapágina</param>
         /// <param name="itemsPerPage">Número de itens por página</param>
         /// <param name="totalItems">Total de itens sem paginação</param>
-        public Page(IList<T> itens, int number, int itemsPerPage, int totalItems)
+        public Page(IList<T> items, int number, int itemsPerPage, int totalItems)
         {
             _itemsPerPage = itemsPerPage;
 
-            Items = itens;
+            Items = items;
             Number = number;
             TotalItems = totalItems;
         }

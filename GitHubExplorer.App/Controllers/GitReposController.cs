@@ -33,9 +33,14 @@ namespace GitHubExplorer.Controllers
         /// <param name="page">Página a ser retornada</param>
         /// <returns>Página de reposiórios resultados da pesquisa</returns>
         [HttpGet]
-        public Page<GitRepoListItem> Search(string filter, int page = 1)
+        public ActionResult<Page<GitRepoListItem>> Search(string filter, int page = 1)
         {
-            return _gitReposService.GetReposPage(filter, page);
+            var pageResult = _gitReposService.GetReposPage(filter, page);
+
+            if (pageResult.Items.Count == 0)
+                return NoContent();
+
+            return pageResult;
         }
 
         /// <summary>
@@ -45,9 +50,14 @@ namespace GitHubExplorer.Controllers
         /// <param name="page">Página a ser retornada</param>
         /// <returns>Página de reposiórios de um usuário</returns>
         [HttpGet]
-        public Page<GitRepoListItem> SearchByUser(string userId, int page = 1)
+        public ActionResult<Page<GitRepoListItem>> SearchByUser(string userId, int page = 1)
         {
-            return _gitReposService.GetUserReposPage(userId, page);
+            var pageResult = _gitReposService.GetUserReposPage(userId, page);
+
+            if (pageResult.Items.Count == 0)
+                return NoContent();
+
+            return pageResult;
         }
 
         /// <summary>
@@ -56,9 +66,14 @@ namespace GitHubExplorer.Controllers
         /// <param name="id">ID do repositório</param>
         /// <returns>Informações do repositório</returns>
         [HttpGet]
-        public GitRepo Get(string id)
+        public ActionResult<GitRepo> Get(string id)
         {
-            return _gitReposService.GetRepo(id);
+            var repo = _gitReposService.GetRepo(id);
+
+            if (repo == null)
+                return NotFound();
+
+            return repo;
         }
     }
 }

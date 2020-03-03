@@ -18,7 +18,7 @@ namespace GitHubExplorer.Services
         /// Retorna detalhes de um repositório
         /// </summary>
         /// <param name="id">ID do repositório</param>
-        /// <returns>Detalhes do repositório</returns>
+        /// <returns>Detalhes do repositório ou <c>null</c> caso o repositório não tenha sido encontrado</returns>
         GitRepo GetRepo(string id);
         /// <summary>
         /// Retorna uma página de repositórios de um usuário
