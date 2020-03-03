@@ -14,7 +14,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\GitHubExplorer.App\GitHubExplorer.csproj" />
-    <ProjectReference Include="..\GitHubExplorer.csproj" />
   </ItemGroup>
 
 </Project>
