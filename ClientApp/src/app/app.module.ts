@@ -6,8 +6,8 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { GithubRepoListItemComponent } from './github-repo-list-item/github-repo-list-item.component';
-import { GithubRepoDetailsComponent } from './github-repo-details/github-repo-details.component';
+import { GitRepoListComponent } from './git-repo-list/git-repo-list.component';
+import { GitRepoDetailsComponent } from './git-repo-details/git-repo-details.component';
 
 const routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -17,8 +17,8 @@ const routes = [
   declarations: [
     AppComponent,
     HomeComponent,
-    GithubRepoListItemComponent,
-    GithubRepoDetailsComponent,
+    GitRepoListComponent,
+    GitRepoDetailsComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

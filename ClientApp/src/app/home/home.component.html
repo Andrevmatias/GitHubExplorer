@@ -13,9 +13,7 @@
 </form>
 <div class="row">
   <div class="col">
-    <ul class="list-group">
-      <github-repo-list-item *ngFor="let gitHubRepo of gitHubRepos" [repo]="gitHubRepo">
-      </github-repo-list-item>
-    </ul>
+    <git-repo-list [repos]="gitRepos">
+    </git-repo-list>
   </div>
 </div>
