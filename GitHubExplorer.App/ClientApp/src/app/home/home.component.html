@@ -1,21 +1,57 @@
-<form>
+<form #searchForm="ngForm" (ngSubmit)="search(searchForm)">
   <div class="form-group">
     <div class="input-group">
       <div class="input-group-prepend">
         <span class="input-group-text">
-          <i class="fas fa-search"></i>
+          <i class="fas fa-search" [ngClass]="{ 'searching': searching }"></i>
         </span>
       </div>
-      <input type="text" class="form-control" placeholder="Buscar repositórios...">
+      <input type="text"
+             class="form-control"
+             required
+             name="formFilter"
+             [(ngModel)]="formFilter"
+             placeholder="Buscar repositórios..."
+             #filter="ngModel"
+             [disabled]="searching">
       <div class="input-group-append">
-        <button class="btn btn-primary">Pesquisar</button>
+        <input type="submit" class="btn btn-primary" value="Pesquisar" [disabled]="searching" />
+      </div>
+    </div>
+    <div *ngIf="filter.invalid && (filter.dirty || filter.touched)"
+         class="alert alert-danger">
+      <div *ngIf="filter.errors.required">
+        Digite um filtro para a busca.
       </div>
     </div>
   </div>
 </form>
+
+<div class="row" *ngIf="gitReposPage">
+  <nav class="col">
+    <ul class="pagination">
+      <li class="page-item" *ngIf="gitReposPage.number !== 1">
+        <a class="page-link"
+           href="#"
+           (click)="loadPreviousPage()">Anterior</a>
+      </li>
+      <li class="page-item" *ngIf="!gitReposPage.isLast">
+        <a class="page-link"
+           href="#"
+           (click)="loadNextPage()">Próxima</a>
+      </li>
+    </ul>
+  </nav>
+  <div class="col">
+    <p class="text-right">
+      {{gitReposPage.totalItems | number:'1.0-0':'pt'}} repositórios encontrados
+    </p>
+  </div>
+</div>
+
 <div class="row">
   <div class="col">
-    <git-repo-list [repos]="gitRepos">
+    <git-repo-list *ngIf="gitReposPage" [repos]="gitReposPage.items">
     </git-repo-list>
   </div>
 </div>

@@ -1,2 +1,17 @@
 <ul class="list-group">
+  <li class="list-group-item list-group-item-action" *ngFor="let repo of repos" [routerLink]="['/repo', repo.id]">
+    <div class="d-flex w-100 justify-content-between">
+      <h2 class="mb-1 h5">{{repo.name}}</h2>
+      <small class="star-container">
+        {{repo.starCount}}
+        <i class="fas fa-star"></i>
+      </small>
+    </div>
+    <p class="mb-1">
+      {{repo.description}}
+    </p>
+    <small>
+    Autor: {{repo.authorName}}
+    </small>
+  </li>
 </ul>

@@ -14,4 +14,7 @@ export class GitRepoListComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  showDetails(repo: GitRepoListItem): void {
+
+  }
 }

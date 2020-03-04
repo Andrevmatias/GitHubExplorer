@@ -1,0 +1,7 @@
+.list-group-item {
+    cursor: pointer;
+}
+
+.star-container {
+    white-space: nowrap;
+}

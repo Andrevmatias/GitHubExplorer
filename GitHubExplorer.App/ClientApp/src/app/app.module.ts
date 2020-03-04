@@ -9,6 +9,11 @@ import { HomeComponent } from './home/home.component';
 import { GitRepoListComponent } from './git-repo-list/git-repo-list.component';
 import { GitRepoDetailsComponent } from './git-repo-details/git-repo-details.component';
 
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+
+registerLocaleData(localePt);
+
 const routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
   { path: 'repo/:id', component: GitRepoDetailsComponent },
