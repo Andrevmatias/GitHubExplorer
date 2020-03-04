@@ -1,4 +1,5 @@
 ﻿using GitHubExplorer.Models;
+using System.Threading.Tasks;
 
 namespace GitHubExplorer.Services
 {
@@ -13,19 +14,19 @@ namespace GitHubExplorer.Services
         /// <param name="filter">Filtro a ser usado na pesquisa</param>
         /// <param name="page">Número da página a ser retornada</param>
         /// <returns>Página de resultados da pesquisa</returns>
-        Page<GitRepoListItem> GetReposPage(string filter, int page);
+        Task<Page<GitRepoListItem>> GetReposPage(string filter, int page);
         /// <summary>
         /// Retorna detalhes de um repositório
         /// </summary>
         /// <param name="id">ID do repositório</param>
         /// <returns>Detalhes do repositório ou <c>null</c> caso o repositório não tenha sido encontrado</returns>
-        GitRepo GetRepo(string id);
+        Task<GitRepo> GetRepo(long id);
         /// <summary>
         /// Retorna uma página de repositórios de um usuário
         /// </summary>
         /// <param name="userId">ID do usuário</param>
         /// <param name="page">Número da página a ser retornada</param>
         /// <returns>Página de repositórios do usuário</returns>
-        Page<GitRepoListItem> GetUserReposPage(string userId, int page);
+        Task<Page<GitRepoListItem>> GetUserReposPage(long userId, int page);
     }
 }

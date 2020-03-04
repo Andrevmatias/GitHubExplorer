@@ -2,7 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 export interface GitRepoListItem {
-  id: string;
+  id: number;
   name: string;
   description: string;
   authorName: string;
@@ -10,7 +10,7 @@ export interface GitRepoListItem {
 }
 
 export interface GitRepo {
-  id: string;
+  id: number;
   name: string;
   description: string;
   starCount: number;
@@ -21,7 +21,7 @@ export interface GitRepo {
 }
 
 export interface GitUser {
-  id: string;
+  id: number;
   name: string;
 }
 

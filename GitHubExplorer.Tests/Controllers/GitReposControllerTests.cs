@@ -7,6 +7,7 @@ using GitHubExplorer.Tests.MockServices;
 using Microsoft.Extensions.Logging.Abstractions;
 using System.Runtime.Intrinsics.X86;
 using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace GitHubExplorer.Controllers.Tests
 {
@@ -25,58 +26,58 @@ namespace GitHubExplorer.Controllers.Tests
         }
 
         [Fact()]
-        public void SearchTest()
+        public async Task SearchTest()
         {
             var controller = GetController();
 
-            var pageResponse = controller.Search("1");
+            var pageResponse = await controller.Search("1");
 
             var reposPage = pageResponse.Value;
             Assert.Equal(1, reposPage.Number);
             Assert.Equal(1, reposPage.Items.Count);
 
             var repo = reposPage.Items[0];
-            Assert.Equal("1", repo.Id);
+            Assert.Equal(1, repo.Id);
 
             var repo3Response = controller.Search("3");
-            Assert.IsType<NoContentResult>(repo3Response.Result);
+            Assert.IsType<NoContentResult>(repo3Response.Result.Result);
 
             var page2Response = controller.Search("1", 2);
-            Assert.IsType<NoContentResult>(page2Response.Result);
+            Assert.IsType<NoContentResult>(page2Response.Result.Result);
         }
 
         [Fact()]
-        public void SearchByUserTest()
+        public async Task SearchByUserTest()
         {
             var controller = GetController();
 
-            var pageResponse = controller.SearchByUser("2");
+            var pageResponse = await controller.SearchByUser(2);
 
             var reposPage = pageResponse.Value;
             Assert.Equal(1, reposPage.Number);
             Assert.Equal(1, reposPage.Items.Count);
 
             var repo = reposPage.Items[0];
-            Assert.Equal("2", repo.Id);
+            Assert.Equal(2, repo.Id);
 
-            var user3Response = controller.SearchByUser("3");
-            Assert.IsType<NoContentResult>(user3Response.Result);
+            var user3Response = controller.SearchByUser(3);
+            Assert.IsType<NoContentResult>(user3Response.Result.Result);
 
-            var page2Response = controller.SearchByUser("1", 2);
-            Assert.IsType<NoContentResult>(page2Response.Result);
+            var page2Response = controller.SearchByUser(1, 2);
+            Assert.IsType<NoContentResult>(page2Response.Result.Result);
         }
 
         [Fact()]
-        public void GetTest()
+        public async Task GetTest()
         {
             var controller = GetController();
 
-            var repoResponse = controller.Get("2");
+            var repoResponse = await controller.Get(2);
             var repo = repoResponse.Value;
-            Assert.Equal("2", repo.Id);
+            Assert.Equal(2, repo.Id);
 
-            var repo3Response = controller.Get("3");
-            Assert.IsType<NotFoundResult>(repo3Response.Result);
+            var repo3Response = controller.Get(3);
+            Assert.IsType<NotFoundResult>(repo3Response.Result.Result);
         }
     }
 }

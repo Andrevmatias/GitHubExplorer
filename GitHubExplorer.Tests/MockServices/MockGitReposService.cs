@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace GitHubExplorer.Tests.MockServices
 {
@@ -15,12 +16,12 @@ namespace GitHubExplorer.Tests.MockServices
         {
             new GitUser
             {
-                Id = "1",
+                Id = 1,
                 Name = "Author1"
             },
             new GitUser
             {
-                Id = "2",
+                Id = 2,
                 Name = "Author2"
             }
         };
@@ -29,7 +30,7 @@ namespace GitHubExplorer.Tests.MockServices
         {
             new GitRepo
             {
-                Id = "1",
+                Id = 1,
                 Author = _gitUsers[0],
                 CreationDate = new DateTime(2001, 01, 01),
                 Description = "Description1",
@@ -40,7 +41,7 @@ namespace GitHubExplorer.Tests.MockServices
             },
             new GitRepo
             {
-                Id = "2",
+                Id = 2,
                 Author = _gitUsers[1],
                 CreationDate = new DateTime(2002, 02, 02),
                 Description = "Description2",
@@ -51,12 +52,12 @@ namespace GitHubExplorer.Tests.MockServices
             }
         };
 
-        public GitRepo GetRepo(string id)
+        public Task<GitRepo> GetRepo(long id)
         {
-            return _repos.SingleOrDefault(e => e.Id == id);
+            return Task.FromResult(_repos.SingleOrDefault(e => e.Id == id));
         }
 
-        public Page<GitRepoListItem> GetReposPage(string filter, int page)
+        public Task<Page<GitRepoListItem>> GetReposPage(string filter, int page)
         {
             var items = _repos
                 .Where(e => e.Name.Contains(filter, StringComparison.InvariantCultureIgnoreCase));
@@ -68,10 +69,12 @@ namespace GitHubExplorer.Tests.MockServices
                 .Select(ConvertToListItem)
                 .ToList();
 
-            return new Page<GitRepoListItem>(pageItems, page, _ITENS_PER_PAGE, total);
+            return Task.FromResult(
+                new Page<GitRepoListItem>(pageItems, page, _ITENS_PER_PAGE, total)
+            );
         }
 
-        public Page<GitRepoListItem> GetUserReposPage(string userId, int page)
+        public Task<Page<GitRepoListItem>> GetUserReposPage(long userId, int page)
         {
             var items = _repos
                 .Where(e => e.Author.Id == userId);
@@ -83,7 +86,9 @@ namespace GitHubExplorer.Tests.MockServices
                 .Select(ConvertToListItem)
                 .ToList();
 
-            return new Page<GitRepoListItem>(pageItems, page, _ITENS_PER_PAGE, total);
+            return Task.FromResult(
+                new Page<GitRepoListItem>(pageItems, page, _ITENS_PER_PAGE, total)
+            );
         }
 
         private GitRepoListItem ConvertToListItem(GitRepo repo)
