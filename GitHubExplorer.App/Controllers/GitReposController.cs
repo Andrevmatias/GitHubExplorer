@@ -16,13 +16,10 @@ namespace GitHubExplorer.Controllers
     [Route("[controller]")]
     public class GitReposController : ControllerBase
     {
-        private readonly ILogger<GitReposController> _logger;
         private readonly IGitReposService _gitReposService;
 
-        public GitReposController(ILogger<GitReposController> logger, 
-            IGitReposService gitReposService)
+        public GitReposController(IGitReposService gitReposService)
         {
-            _logger = logger;
             _gitReposService = gitReposService;
         }
 
@@ -32,7 +29,7 @@ namespace GitHubExplorer.Controllers
         /// <param name="filter">Filtro a ser usado</param>
         /// <param name="page">Página a ser retornada</param>
         /// <returns>Página de reposiórios resultados da pesquisa</returns>
-        [HttpGet]
+        [HttpGet("search")]
         public async Task<ActionResult<Page<GitRepoListItem>>> Search(string filter, int page = 1)
         {
             if (string.IsNullOrEmpty(filter))
@@ -55,7 +52,7 @@ namespace GitHubExplorer.Controllers
         /// <param name="userId">ID do usuário autor dos repositórios</param>
         /// <param name="page">Página a ser retornada</param>
         /// <returns>Página de reposiórios de um usuário</returns>
-        [HttpGet]
+        [HttpGet("search-by-user")]
         public async Task<ActionResult<Page<GitRepoListItem>>> SearchByUser(string userId, int page = 1)
         {
             if (page <= 0)
@@ -74,7 +71,7 @@ namespace GitHubExplorer.Controllers
         /// </summary>
         /// <param name="id">ID do repositório</param>
         /// <returns>Informações do repositório</returns>
-        [HttpGet]
+        [HttpGet("{id}")]
         public async Task<ActionResult<GitRepo>> Get(long id)
         {
             var repo = await _gitReposService.GetRepo(id);

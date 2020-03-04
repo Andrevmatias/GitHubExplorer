@@ -15,7 +15,7 @@ namespace GitHubExplorer.Controllers.Tests
     {
         private static GitReposController GetController()
         {
-            return new GitReposController(new NullLogger<GitReposController>(), new MockGitReposService());
+            return new GitReposController(new MockGitReposService());
         }
 
         [Fact()]

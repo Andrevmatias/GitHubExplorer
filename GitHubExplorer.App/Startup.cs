@@ -1,9 +1,11 @@
+using GitHubExplorer.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 
 namespace GitHubExplorer
 {
@@ -25,6 +27,13 @@ namespace GitHubExplorer
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+            ConfigureApplicationServices(services);
+        }
+
+        private void ConfigureApplicationServices(IServiceCollection services)
+        {
+            services.AddSingleton<IGitReposService, OctokitGitReposService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
