@@ -1,1 +1,7 @@
-<p>github-repo-details works!</p>
+<dl *ngIf="repo">
+  <dd>{{repo.name}}</dd>
+  <dd>{{repo.description}}</dd>
+</dl>
+
+<git-repo-list *ngIf="authorReposPage" [repos]="authorReposPage.items">
+</git-repo-list>

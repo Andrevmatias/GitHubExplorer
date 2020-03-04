@@ -11,6 +11,7 @@ import { GitRepoDetailsComponent } from './git-repo-details/git-repo-details.com
 
 const routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
+  { path: 'repo/:id', component: GitRepoDetailsComponent },
 ]
 
 @NgModule({
