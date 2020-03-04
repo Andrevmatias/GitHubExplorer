@@ -12,7 +12,7 @@ namespace GitHubExplorer.Services.Tests
         [Fact()]
         public async Task GetRepoTest()
         {
-            var service = new GitHubReposService();
+            var service = new OctokitGitReposService();
 
             var repoId = 243658391;
 
@@ -28,24 +28,27 @@ namespace GitHubExplorer.Services.Tests
         [Fact()]
         public async Task GetReposPageTest()
         {
-            var service = new GitHubReposService();
+            var service = new OctokitGitReposService();
 
             var repos = await service.GetReposPage("GitHubExplorer", 1);
-
             Assert.NotEmpty(repos.Items);
+
+            await Assert.ThrowsAsync<ArgumentNullException>(() => service.GetReposPage(null, 1));
+            await Assert.ThrowsAsync<ArgumentException>(() => service.GetReposPage("GitHubExplorer", 0));
         }
 
         [Fact()]
         public async Task GetUserReposPageTest()
         {
-            var service = new GitHubReposService();
+            var service = new OctokitGitReposService();
 
-            var userId = 1480319;
+            var userId = "Andrevmatias";
 
             var repos = await service.GetUserReposPage(userId, 1);
-
             Assert.NotEmpty(repos.Items);
             Assert.Equal("Andrevmatias", repos.Items[0].AuthorName);
+
+            await Assert.ThrowsAsync<ArgumentException>(() => service.GetUserReposPage(userId, 0));
         }
     }
 }

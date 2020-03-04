@@ -16,12 +16,12 @@ namespace GitHubExplorer.Tests.MockServices
         {
             new GitUser
             {
-                Id = 1,
+                Id = "1",
                 Name = "Author1"
             },
             new GitUser
             {
-                Id = 2,
+                Id = "2",
                 Name = "Author2"
             }
         };
@@ -74,7 +74,7 @@ namespace GitHubExplorer.Tests.MockServices
             );
         }
 
-        public Task<Page<GitRepoListItem>> GetUserReposPage(long userId, int page)
+        public Task<Page<GitRepoListItem>> GetUserReposPage(string userId, int page)
         {
             var items = _repos
                 .Where(e => e.Author.Id == userId);

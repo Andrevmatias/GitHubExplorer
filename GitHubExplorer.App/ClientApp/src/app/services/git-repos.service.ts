@@ -21,7 +21,7 @@ export interface GitRepo {
 }
 
 export interface GitUser {
-  id: number;
+  id: string;
   name: string;
 }
 

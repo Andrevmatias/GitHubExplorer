@@ -27,6 +27,6 @@ namespace GitHubExplorer.Services
         /// <param name="userId">ID do usuário</param>
         /// <param name="page">Número da página a ser retornada</param>
         /// <returns>Página de repositórios do usuário</returns>
-        Task<Page<GitRepoListItem>> GetUserReposPage(long userId, int page);
+        Task<Page<GitRepoListItem>> GetUserReposPage(string userId, int page);
     }
 }

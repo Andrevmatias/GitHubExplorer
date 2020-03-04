@@ -35,6 +35,12 @@ namespace GitHubExplorer.Controllers
         [HttpGet]
         public async Task<ActionResult<Page<GitRepoListItem>>> Search(string filter, int page = 1)
         {
+            if (string.IsNullOrEmpty(filter))
+                return BadRequest("O filtro não pode ser uma string vazia ou nulo.");
+
+            if (page <= 0)
+                return BadRequest("A página deve ser maior que 0.");
+
             var pageResult = await _gitReposService.GetReposPage(filter, page);
 
             if (pageResult.Items.Count == 0)
@@ -50,8 +56,11 @@ namespace GitHubExplorer.Controllers
         /// <param name="page">Página a ser retornada</param>
         /// <returns>Página de reposiórios de um usuário</returns>
         [HttpGet]
-        public async Task<ActionResult<Page<GitRepoListItem>>> SearchByUser(long userId, int page = 1)
+        public async Task<ActionResult<Page<GitRepoListItem>>> SearchByUser(string userId, int page = 1)
         {
+            if (page <= 0)
+                return BadRequest("A página deve ser maior que 0.");
+
             var pageResult = await _gitReposService.GetUserReposPage(userId, page);
 
             if (pageResult.Items.Count == 0)
