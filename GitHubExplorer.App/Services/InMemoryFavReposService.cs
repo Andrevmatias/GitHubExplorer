@@ -38,6 +38,11 @@ namespace GitHubExplorer.Services
             return Task.FromResult(new Page<long>(reposIds, page, _RESULTS_PER_PAGE, _userFavs.Count));
         }
 
+        public bool IsFavorite(long id)
+        {
+            return _userFavs.Contains(id);
+        }
+
         public Task<bool> Remove(long repoId)
         {
             return Task.FromResult(_userFavs.Remove(repoId));

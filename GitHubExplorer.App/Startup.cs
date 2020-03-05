@@ -35,13 +35,11 @@ namespace GitHubExplorer
         private void ConfigureApplicationServices(IServiceCollection services)
         {
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
-            services.AddSingleton<IGitReposService, OctokitGitReposService>();
             services.AddTransient((Func<IServiceProvider, IFavReposService>)(serviceProvider => {
-                var gitReposService = serviceProvider.GetService<IGitReposService>();
                 var httpContextAcessor = serviceProvider.GetService<IHttpContextAccessor>();
-
                 return new InMemoryFavReposService(httpContextAcessor.HttpContext.Session.Id);
             }));
+            services.AddTransient<IGitReposService, OctokitGitReposService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

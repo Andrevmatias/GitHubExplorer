@@ -30,5 +30,9 @@ namespace GitHubExplorer.Models
         /// Número de estrelas do repositório
         /// </summary>
         public int StarCount { get; set; }
+        /// <summary>
+        /// Indica se o repositório é favorito
+        /// </summary>
+        public bool IsFavorite { get; set; }
     }
 }

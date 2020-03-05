@@ -42,5 +42,9 @@ namespace GitHubExplorer.Models
         /// Data de criação do repositório
         /// </summary>
         public DateTime CreationDate { get; set; }
+        /// <summary>
+        /// Indica se o repositório é favorito
+        /// </summary>
+        public bool IsFavorite { get; set; }
     }
 }

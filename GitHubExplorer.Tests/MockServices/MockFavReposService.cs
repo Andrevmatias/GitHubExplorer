@@ -66,5 +66,10 @@ namespace GitHubExplorer.Tests.MockServices
 
             return Task.FromResult(true);
         }
+
+        public bool IsFavorite(long id)
+        {
+            return _repos.Any(e => e.Id == id);
+        }
     }
 }

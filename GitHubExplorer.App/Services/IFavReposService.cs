@@ -28,5 +28,12 @@ namespace GitHubExplorer.Services
         /// <param name="repoId">ID do repositório</param>
         /// <returns><c>True</c> caso tenha sido removido com sucesso e <c>False</c> caso não tenha sido encontrado</returns>
         Task<bool> Remove(long repoId);
+
+        /// <summary>
+        /// Verifica se um repositório é favorito
+        /// </summary>
+        /// <param name="id">ID do repositório</param>
+        /// <returns><c>True</c> caso seja favorito, senão <c>False</c></returns>
+        bool IsFavorite(long id);
     }
 }

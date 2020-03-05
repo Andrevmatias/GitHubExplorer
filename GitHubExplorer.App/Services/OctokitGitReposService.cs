@@ -10,13 +10,14 @@ namespace GitHubExplorer.Services
     public class OctokitGitReposService : IGitReposService
     {
         private const int _RESULTS_PER_PAGE = 15;
-
+        private readonly IFavReposService _favReposService;
         private static ProductHeaderValue _productInformation = new ProductHeaderValue("Andrevmatias-GitHubExplorer");
         private GitHubClient _client;
 
-        public OctokitGitReposService()
+        public OctokitGitReposService(IFavReposService favReposService)
         {
             _client = new GitHubClient(_productInformation);
+            _favReposService = favReposService;
         }
 
         public async Task<GitRepo> GetRepo(long id)
@@ -106,7 +107,8 @@ namespace GitHubExplorer.Services
                 MainProgrammingLanguage = repo.Language,
                 Name = repo.Name,
                 OpenIssuesCount = repo.OpenIssuesCount,
-                StarCount = repo.StargazersCount
+                StarCount = repo.StargazersCount,
+                IsFavorite = _favReposService.IsFavorite(repo.Id)
             };
         }
 
@@ -121,7 +123,8 @@ namespace GitHubExplorer.Services
                 Description = repo.Description,
                 Id = repo.Id,
                 Name = repo.Name,
-                StarCount = repo.StargazersCount
+                StarCount = repo.StargazersCount,
+                IsFavorite = _favReposService.IsFavorite(repo.Id)
             };
         }
 

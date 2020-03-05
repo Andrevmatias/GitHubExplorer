@@ -55,6 +55,20 @@ namespace GitHubExplorer.Services.Tests
             Assert.True(result);
         }
 
+        [Fact()]
+        public async Task IsFavoriteTest()
+        {
+            var service = GetService();
+
+            var resultFalse = service.IsFavorite(0);
+            Assert.False(resultFalse);
+
+            await service.Add(20);
+
+            var result = service.IsFavorite(20);
+            Assert.True(result);
+        }
+
         private InMemoryFavReposService GetService()
         {
             return new InMemoryFavReposService("test_user");

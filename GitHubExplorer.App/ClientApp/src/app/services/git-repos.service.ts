@@ -9,6 +9,7 @@ export interface GitRepoListItem {
   description: string;
   authorName: string;
   starCount: number;
+  isFavorite: boolean;
 }
 
 export interface GitRepo {
@@ -20,6 +21,7 @@ export interface GitRepo {
   openIssuesCount: number;
   mainProgrammingLanguage: string;
   creationDate: Date;
+  isFavorite: boolean;
 }
 
 export interface GitUser {

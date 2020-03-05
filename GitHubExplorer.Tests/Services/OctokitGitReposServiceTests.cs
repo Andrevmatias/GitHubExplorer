@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using GitHubExplorer.Tests.MockServices;
 
 namespace GitHubExplorer.Services.Tests
 {
@@ -12,7 +13,7 @@ namespace GitHubExplorer.Services.Tests
         [Fact()]
         public async Task GetRepoTest()
         {
-            var service = new OctokitGitReposService();
+            var service = GetService();
 
             var repoId = 243658391;
 
@@ -28,7 +29,7 @@ namespace GitHubExplorer.Services.Tests
         [Fact()]
         public async Task GetRepos()
         {
-            var service = new OctokitGitReposService();
+            var service = GetService();
 
             long repoId = 243658391;
 
@@ -44,7 +45,7 @@ namespace GitHubExplorer.Services.Tests
         [Fact()]
         public async Task GetReposPageTest()
         {
-            var service = new OctokitGitReposService();
+            var service = GetService();
 
             var repos = await service.GetReposPage("GitHubExplorer", 1);
             Assert.NotEmpty(repos.Items);
@@ -56,7 +57,7 @@ namespace GitHubExplorer.Services.Tests
         [Fact()]
         public async Task GetUserReposPageTest()
         {
-            var service = new OctokitGitReposService();
+            var service = GetService();
 
             var userId = "Andrevmatias";
 
@@ -65,6 +66,11 @@ namespace GitHubExplorer.Services.Tests
             Assert.Equal("Andrevmatias", repos.Items[0].AuthorName);
 
             await Assert.ThrowsAsync<ArgumentException>(() => service.GetUserReposPage(userId, 0));
+        }
+
+        private static OctokitGitReposService GetService()
+        {
+            return new OctokitGitReposService(new MockFavReposService());
         }
     }
 }
