@@ -86,7 +86,7 @@ namespace GitHubExplorer.Services
             return new GitRepo
             {
                 Author = ConvertUser(repo.Owner),
-                CreationDate = repo.CreatedAt.DateTime,
+                CreationDate = repo.CreatedAt.LocalDateTime,
                 Description = repo.Description,
                 Id = repo.Id,
                 MainProgrammingLanguage = repo.Language,

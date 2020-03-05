@@ -10,20 +10,24 @@
     Voltar
   </button>
 
-  <dl *ngIf="repo" class="mb-3">
-    <dt>Nome:</dt>
-    <dd>{{repo.name}}</dd>
-    <dt>Descrição:</dt>
-    <dd>{{repo.description}}</dd>
-    <dt>Autor:</dt>
-    <dd *ngIf="repo.author">{{repo.author.name}}</dd>
-    <dt>Issues abertas:</dt>
-    <dd>{{repo.openIssuesCount}}</dd>
-    <dt>Linguagem:</dt>
-    <dd>{{repo.mainProgrammingLanguage}}</dd>
-    <dt>Data de Criação:</dt>
-    <dd>{{repo.creationDate | date:'dd/MM/yyyy HH:mm'}}</dd>
-  </dl>
+  <div *ngIf="repo" class="mb-3">
+    <h2>{{repo.name}}</h2>
+
+    <p>
+      {{repo.description}}
+    </p>
+
+    <dl>
+      <dt>Autor:</dt>
+      <dd *ngIf="repo.author">{{repo.author.name}}</dd>
+      <dt>Issues abertas:</dt>
+      <dd>{{repo.openIssuesCount}}</dd>
+      <dt>Linguagem Principal:</dt>
+      <dd>{{repo.mainProgrammingLanguage ? repo.mainProgrammingLanguage : '(Não informada)'}}</dd>
+      <dt>Data de Criação:</dt>
+      <dd>{{repo.creationDate | date:'dd/MM/yyyy HH:mm'}}</dd>
+    </dl>
+  </div>
 
   <h2 class="h3 title-repositories-list">Outros repositórios do mesmo autor:</h2>
 
