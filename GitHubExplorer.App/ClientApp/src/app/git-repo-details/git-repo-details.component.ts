@@ -33,6 +33,8 @@ export class GitRepoDetailsComponent implements OnInit {
     ).subscribe(authorReposPage => {
       this.authorReposPage = authorReposPage
       this.loading = false;
+      if(window)
+        window.scroll(0, 0);
     }, _ => this.loading = false);
   }
 

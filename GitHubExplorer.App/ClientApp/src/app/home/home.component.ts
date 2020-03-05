@@ -40,6 +40,8 @@ export class HomeComponent implements OnInit {
     ).subscribe(gitReposPage => {
       this.gitReposPage = gitReposPage;
       this.searching = false;
+      if (window)
+        window.scroll(0, 0);
     }, _ => this.searching = false);
   }
 

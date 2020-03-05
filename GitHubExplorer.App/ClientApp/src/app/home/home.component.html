@@ -32,11 +32,15 @@
     <ul class="pagination">
       <li class="page-item" *ngIf="gitReposPage.number !== 1">
         <button class="page-link"
-           (click)="loadPreviousPage()">Anterior</button>
+                (click)="loadPreviousPage()">
+          Anterior
+        </button>
       </li>
       <li class="page-item" *ngIf="!gitReposPage.isLast">
         <button class="page-link"
-           (click)="loadNextPage()">Próxima</button>
+                (click)="loadNextPage()">
+          Próxima
+        </button>
       </li>
     </ul>
   </nav>
@@ -47,9 +51,28 @@
   </div>
 </div>
 
-<div class="row">
+<div class="row mb-3">
   <div class="col">
     <git-repo-list *ngIf="gitReposPage" [repos]="gitReposPage.items">
     </git-repo-list>
   </div>
+</div>
+
+<div class="row" *ngIf="gitReposPage">
+  <nav class="col">
+    <ul class="pagination">
+      <li class="page-item" *ngIf="gitReposPage.number !== 1">
+        <button class="page-link"
+                (click)="loadPreviousPage()">
+          Anterior
+        </button>
+      </li>
+      <li class="page-item" *ngIf="!gitReposPage.isLast">
+        <button class="page-link"
+                (click)="loadNextPage()">
+          Próxima
+        </button>
+      </li>
+    </ul>
+  </nav>
 </div>

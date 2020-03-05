@@ -8,10 +8,10 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { GitRepoListComponent } from './git-repo-list/git-repo-list.component';
 import { GitRepoDetailsComponent } from './git-repo-details/git-repo-details.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
-import { NotFoundComponent } from './not-found/not-found.component';
 
 registerLocaleData(localePt);
 
