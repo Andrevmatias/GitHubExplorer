@@ -1,4 +1,8 @@
-#box-carregando {
+body, html {
+    height: 100%;
+}
+
+.box-carregando {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -11,7 +15,7 @@
     text-align: center;
 }
 
-#box-carregando p {
+.box-carregando p {
     margin-top: 20px;
 }
 
@@ -22,6 +26,8 @@
 #main-container {
   padding-top: 2rem;
   padding-bottom: 4rem;
+
+  min-height: calc(100% - 115px);
 }
 
 .btn-primary {

@@ -1,7 +1,47 @@
-<dl *ngIf="repo">
-  <dd>{{repo.name}}</dd>
-  <dd>{{repo.description}}</dd>
-</dl>
 
-<git-repo-list *ngIf="authorReposPage" [repos]="authorReposPage.items">
-</git-repo-list>
+<div class="box-carregando" *ngIf="loading">
+  <img src="/github_logo.png" width="100" height="100" class="d-inline-block align-top" alt="GitHub Explorer Logo">
+  <p>Carregando...</p>
+</div>
+
+<div *ngIf="!loading">
+  <button class="btn btn-primary mb-4" (click)="location.back()">
+    <i class="fas fa-arrow-left"></i>
+    Voltar
+  </button>
+
+  <dl *ngIf="repo" class="mb-3">
+    <dt>Nome:</dt>
+    <dd>{{repo.name}}</dd>
+    <dt>Descrição:</dt>
+    <dd>{{repo.description}}</dd>
+    <dt>Autor:</dt>
+    <dd *ngIf="repo.author">{{repo.author.name}}</dd>
+    <dt>Issues abertas:</dt>
+    <dd>{{repo.openIssuesCount}}</dd>
+    <dt>Linguagem:</dt>
+    <dd>{{repo.mainProgrammingLanguage}}</dd>
+    <dt>Data de Criação:</dt>
+    <dd>{{repo.creationDate | date:'dd/MM/yyyy HH:mm'}}</dd>
+  </dl>
+
+  <h2 class="h3 title-repositories-list">Outros repositórios do mesmo autor:</h2>
+
+  <nav *ngIf="authorReposPage">
+    <ul class="pagination">
+      <li class="page-item" *ngIf="authorReposPage.number !== 1">
+        <a class="page-link"
+           href="#"
+           (click)="loadPreviousPage()">Anterior</a>
+      </li>
+      <li class="page-item" *ngIf="!authorReposPage.isLast">
+        <a class="page-link"
+           href="#"
+           (click)="loadNextPage()">Próxima</a>
+      </li>
+    </ul>
+  </nav>
+
+  <git-repo-list *ngIf="authorReposPage" [repos]="authorReposPage.items">
+  </git-repo-list>
+</div>

@@ -11,12 +11,16 @@ import { GitRepoDetailsComponent } from './git-repo-details/git-repo-details.com
 
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 registerLocaleData(localePt);
 
 const routes = [
   { path: '', component: HomeComponent, pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
   { path: 'repo/:id', component: GitRepoDetailsComponent },
+  { path: '404', component: NotFoundComponent },
+  { path: '**', redirectTo: '/404' }
 ]
 
 @NgModule({
@@ -25,6 +29,7 @@ const routes = [
     HomeComponent,
     GitRepoListComponent,
     GitRepoDetailsComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
