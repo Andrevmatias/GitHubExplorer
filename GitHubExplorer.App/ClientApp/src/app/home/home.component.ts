@@ -31,7 +31,8 @@ export class HomeComponent implements OnInit {
         if (params.has('filter')) {
           this.searching = true;
           this.currentFilter = this.formFilter = params.get('filter');
-          return this.gitReposService.search(this.currentFilter);
+          const page = params.has('page') ? +params.get('page') : 1;
+          return this.gitReposService.search(this.currentFilter, page);
         } else {
           return empty();
         }
@@ -49,24 +50,14 @@ export class HomeComponent implements OnInit {
     }
 
     this.currentFilter = this.formFilter;
-    this.router.navigate(['/home', { filter: this.formFilter }], { replaceUrl: true })
-    this.loadPage();
+    this.router.navigate(['/home', { filter: this.formFilter, page: 1 }], { replaceUrl: true });
   }
 
   loadPreviousPage(): void {
-    this.loadPage(this.gitReposPage.number - 1);
+    this.router.navigate(['/home', { filter: this.formFilter, page: this.gitReposPage.number - 1 }], { replaceUrl: true });
   }
 
   loadNextPage(): void {
-    this.loadPage(this.gitReposPage.number + 1);
-  }
-
-  loadPage(page: number = 1) {
-    this.searching = true;
-    this.gitReposService.search(this.currentFilter, page)
-      .subscribe(resultPage => {
-        this.gitReposPage = resultPage;
-        this.searching = false;
-      }, _ => this.searching = false);
+    this.router.navigate(['/home', { filter: this.formFilter, page: this.gitReposPage.number + 1 }], { replaceUrl: true });
   }
 }

@@ -31,14 +31,12 @@
   <nav class="col">
     <ul class="pagination">
       <li class="page-item" *ngIf="gitReposPage.number !== 1">
-        <a class="page-link"
-           href="#"
-           (click)="loadPreviousPage()">Anterior</a>
+        <button class="page-link"
+           (click)="loadPreviousPage()">Anterior</button>
       </li>
       <li class="page-item" *ngIf="!gitReposPage.isLast">
-        <a class="page-link"
-           href="#"
-           (click)="loadNextPage()">Próxima</a>
+        <button class="page-link"
+           (click)="loadNextPage()">Próxima</button>
       </li>
     </ul>
   </nav>
