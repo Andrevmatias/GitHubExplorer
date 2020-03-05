@@ -27,7 +27,10 @@ namespace GitHubExplorer.Controllers
         [HttpGet]
         public async Task<ActionResult<Page<GitRepoListItem>>> Get(int page = 1)
         {
-            throw new NotImplementedException();
+            if (page <= 0)
+                return BadRequest("A página deve ser maior que 0.");
+
+            return await _favReposService.GetPage(page);
         }
 
         /// <summary>
@@ -37,7 +40,12 @@ namespace GitHubExplorer.Controllers
         [HttpPost("{repoId}")]
         public async Task<ActionResult> Post(long repoId)
         {
-            throw new NotImplementedException();
+            var result = await _favReposService.Add(repoId);
+
+            if (result)
+                return Ok();
+            else
+                return Conflict("Repositório já é favorito.");
         }
 
         /// <summary>
@@ -47,7 +55,12 @@ namespace GitHubExplorer.Controllers
         [HttpDelete("{repoId}")]
         public async Task<ActionResult> Delete(long repoId)
         {
-            throw new NotImplementedException();
+            var result = await _favReposService.Remove(repoId);
+
+            if (result)
+                return Ok();
+            else
+                return NotFound("Repositório não é favorito.");
         }
     }
 }

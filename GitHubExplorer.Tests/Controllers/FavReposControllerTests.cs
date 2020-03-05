@@ -34,15 +34,27 @@ namespace GitHubExplorer.Controllers.Tests
         }
 
         [Fact()]
-        public void PostTest()
+        public async Task PostTest()
         {
             var controller = GetController();
+
+            var responseOk = await controller.Post(2);
+            Assert.IsType<OkResult>(responseOk);
+
+            var responseConflict = await controller.Post(1);
+            Assert.IsType<ConflictObjectResult>(responseConflict);
         }
 
         [Fact()]
-        public void DeleteTest()
+        public async Task DeleteTest()
         {
             var controller = GetController();
+
+            var responseOk = await controller.Delete(1);
+            Assert.IsType<OkResult>(responseOk);
+
+            var responseNotFound = await controller.Delete(2);
+            Assert.IsType<NotFoundObjectResult>(responseNotFound);
         }
 
         private FavReposController GetController()

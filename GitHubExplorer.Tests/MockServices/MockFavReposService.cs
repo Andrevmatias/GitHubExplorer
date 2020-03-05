@@ -12,7 +12,7 @@ namespace GitHubExplorer.Tests.MockServices
     {
         private const int _ITENS_PER_PAGE = 1;
 
-        private static IList<GitRepoListItem> _repos = new List<GitRepoListItem>
+        private IList<GitRepoListItem> _repos = new List<GitRepoListItem>
         {
             new GitRepoListItem
             {
