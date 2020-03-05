@@ -1,4 +1,5 @@
 ﻿using GitHubExplorer.Models;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace GitHubExplorer.Services
@@ -22,11 +23,11 @@ namespace GitHubExplorer.Services
         /// <returns>Detalhes do repositório ou <c>null</c> caso o repositório não tenha sido encontrado</returns>
         Task<GitRepo> GetRepo(long id);
         /// <summary>
-        /// Retorna um repositório como um item de lista
+        /// Retorna uma lista de repositórios pelos seus IDs
         /// </summary>
-        /// <param name="id">ID do repositório</param>
-        /// <returns>Item de lista do repositório ou <c>null</c> caso o repositório não tenha sido encontrado</returns>
-        Task<GitRepoListItem> GetRepoAsListItem(long id);
+        /// <param name="ids">IDs dos repositórios</param>
+        /// <returns>Lista de repositórios dos IDs. IDs não encontrados são descartados.</returns>
+        Task<IList<GitRepoListItem>> GetRepos(IEnumerable<long> ids);
         /// <summary>
         /// Retorna uma página de repositórios de um usuário
         /// </summary>

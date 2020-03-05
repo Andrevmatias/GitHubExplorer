@@ -11,15 +11,12 @@ namespace GitHubExplorer.Services
         private const int _RESULTS_PER_PAGE = 15;
 
         private static readonly IDictionary<string, ISet<long>> _favs = new Dictionary<string, ISet<long>>();
-        
-        private readonly IGitReposService _gitReposService;
 
         private ISet<long> _userFavs;
 
         /// <param name="userId">Código do usuário que está registrando favoritos</param>
-        public InMemoryFavReposService(string userId, IGitReposService gitReposService)
+        public InMemoryFavReposService(string userId)
         {
-            _gitReposService = gitReposService;
             SetupUserFavs(userId);
         }
 
@@ -28,19 +25,17 @@ namespace GitHubExplorer.Services
             return Task.FromResult(_userFavs.Add(repoId));
         }
 
-        public async Task<Page<GitRepoListItem>> GetPage(int page = 1)
+        public Task<Page<long>> GetPage(int page = 1)
         {
             if (page <= 0)
                 throw new ArgumentException(nameof(page));
 
-            var reposSelectTasks = _userFavs
+            var reposIds = _userFavs
                 .Skip((page - 1) * _RESULTS_PER_PAGE)
                 .Take(_RESULTS_PER_PAGE)
-                .Select(async id => await _gitReposService.GetRepoAsListItem(id));
+                .ToList();
 
-            var repos = (await Task.WhenAll(reposSelectTasks)).ToList();
-
-            return new Page<GitRepoListItem>(repos, page, _RESULTS_PER_PAGE, _userFavs.Count);
+            return Task.FromResult(new Page<long>(reposIds, page, _RESULTS_PER_PAGE, _userFavs.Count));
         }
 
         public Task<bool> Remove(long repoId)

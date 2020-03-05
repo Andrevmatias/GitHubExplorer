@@ -16,11 +16,11 @@ namespace GitHubExplorer.Services
         Task<bool> Add(long repoId);
 
         /// <summary>
-        /// Retorna uma página de repositórios favoritos
+        /// Retorna uma página de ids de repositórios favoritos
         /// </summary>
         /// <param name="page">Número da página</param>
-        /// <returns>Página de favoritos</returns>
-        Task<Page<GitRepoListItem>> GetPage(int page = 1);
+        /// <returns>Página de ids de favoritos</returns>
+        Task<Page<long>> GetPage(int page = 1);
 
         /// <summary>
         /// Remove um repositório dos favoritos

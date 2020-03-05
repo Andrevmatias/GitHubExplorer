@@ -24,9 +24,9 @@ namespace GitHubExplorer.Tests.MockServices
             }
         };
 
-        public Task<Page<GitRepoListItem>> GetPage(int page = 1)
+        public Task<Page<long>> GetPage(int page = 1)
         {
-            var items = _repos;
+            var items = _repos.Select(e => e.Id);
 
             var total = items.Count();
 
@@ -35,7 +35,7 @@ namespace GitHubExplorer.Tests.MockServices
                 .ToList();
 
             return Task.FromResult(
-                new Page<GitRepoListItem>(pageItems, page, _ITENS_PER_PAGE, total)
+                new Page<long>(pageItems, page, _ITENS_PER_PAGE, total)
             );
         }
 

@@ -25,10 +25,13 @@ namespace GitHubExplorer.Services
             return ConvertRepo(repo);
         }
 
-        public async Task<GitRepoListItem> GetRepoAsListItem(long id)
+        public async Task<IList<GitRepoListItem>> GetRepos(IEnumerable<long> ids)
         {
-            var repo = await GetGitHubRepo(id);
-            return ConvertRepoListItem(repo);
+            var repos = await Task.WhenAll(ids.Select(async id => await GetGitHubRepo(id)));
+            return repos
+                .Where(e => e != null)
+                .Select(ConvertRepoListItem)
+                .ToList();
         }
 
         public async Task<Page<GitRepoListItem>> GetReposPage(string filter, int page)

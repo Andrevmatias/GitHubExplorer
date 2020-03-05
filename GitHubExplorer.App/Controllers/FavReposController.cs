@@ -14,10 +14,13 @@ namespace GitHubExplorer.Controllers
     public class FavReposController : ControllerBase
     {
         private readonly IFavReposService _favReposService;
+        private readonly IGitReposService _gitReposService;
 
-        public FavReposController(IFavReposService favReposService)
+        public FavReposController(IFavReposService favReposService, 
+            IGitReposService gitReposService)
         {
             _favReposService = favReposService;
+            _gitReposService = gitReposService;
         }
 
         /// <summary>
@@ -30,7 +33,11 @@ namespace GitHubExplorer.Controllers
             if (page <= 0)
                 return BadRequest("A página deve ser maior que 0.");
 
-            return await _favReposService.GetPage(page);
+            var idsPage = await _favReposService.GetPage(page);
+
+            var repos = await _gitReposService.GetRepos(idsPage.Items);
+
+            return new Page<GitRepoListItem>(repos, page, idsPage.ItemsPerPage, idsPage.TotalItems);
         }
 
         /// <summary>

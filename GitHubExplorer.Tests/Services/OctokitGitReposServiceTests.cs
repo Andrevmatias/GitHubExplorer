@@ -26,19 +26,19 @@ namespace GitHubExplorer.Services.Tests
         }
 
         [Fact()]
-        public async Task GetRepoAsListItemTest()
+        public async Task GetRepos()
         {
             var service = new OctokitGitReposService();
 
-            var repoId = 243658391;
+            long repoId = 243658391;
 
-            var repo = await service.GetRepoAsListItem(repoId);
+            var repos = await service.GetRepos(new[] { repoId });
 
-            Assert.Equal("GitHubExplorer", repo.Name);
+            Assert.Equal("GitHubExplorer", repos[0].Name);
 
-            var nullRepo = await service.GetRepoAsListItem(1243123412341234123);
+            var emptyRepoList = await service.GetRepos(new[] { 1243123412341234123 });
 
-            Assert.Null(nullRepo);
+            Assert.Empty(emptyRepoList);
         }
 
         [Fact()]

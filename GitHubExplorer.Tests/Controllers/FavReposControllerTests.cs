@@ -59,7 +59,7 @@ namespace GitHubExplorer.Controllers.Tests
 
         private FavReposController GetController()
         {
-            return new FavReposController(new MockFavReposService());
+            return new FavReposController(new MockFavReposService(), new MockGitReposService());
         }
     }
 }

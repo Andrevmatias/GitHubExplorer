@@ -4,4 +4,5 @@ export interface Page<T> {
   totalItems: number;
   totalPages: number;
   isLast: boolean;
+  itemsPerPage: number;
 }

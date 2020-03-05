@@ -1,6 +1,7 @@
 using GitHubExplorer.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,7 +34,14 @@ namespace GitHubExplorer
 
         private void ConfigureApplicationServices(IServiceCollection services)
         {
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<IGitReposService, OctokitGitReposService>();
+            services.AddTransient((Func<IServiceProvider, IFavReposService>)(serviceProvider => {
+                var gitReposService = serviceProvider.GetService<IGitReposService>();
+                var httpContextAcessor = serviceProvider.GetService<IHttpContextAccessor>();
+
+                return new InMemoryFavReposService(httpContextAcessor.HttpContext.Session.Id);
+            }));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -57,7 +57,7 @@ namespace GitHubExplorer.Services.Tests
 
         private InMemoryFavReposService GetService()
         {
-            return new InMemoryFavReposService("test_user", new MockGitReposService());
+            return new InMemoryFavReposService("test_user");
         }
     }
 }

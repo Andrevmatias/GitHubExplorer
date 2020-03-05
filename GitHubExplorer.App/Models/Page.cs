@@ -45,6 +45,12 @@ namespace GitHubExplorer.Models
                 return Number == TotalPages;
             }
         }
+
+        /// <summary>
+        /// Itens por página
+        /// </summary>
+        public int ItemsPerPage => _itemsPerPage;
+
         /// <summary>
         /// Construtor da página
         /// </summary>
