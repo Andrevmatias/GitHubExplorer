@@ -39,17 +39,17 @@ namespace GitHubExplorer.Controllers.Tests
             var repo = reposPage.Items[0];
             Assert.Equal(1, repo.Id);
 
-            var repo3Response = controller.Search("3");
-            Assert.IsType<NoContentResult>(repo3Response.Result.Result);
+            var repo3Response = await controller.Search("3");
+            Assert.IsType<NoContentResult>(repo3Response.Result);
 
-            var page2Response = controller.Search("1", 2);
-            Assert.IsType<NoContentResult>(page2Response.Result.Result);
+            var page2Response = await controller.Search("1", 2);
+            Assert.IsType<NoContentResult>(page2Response.Result);
 
-            var page0Response = controller.Search("1", 0);
-            Assert.IsType<BadRequestObjectResult>(page0Response.Result.Result);
+            var page0Response = await controller.Search("1", 0);
+            Assert.IsType<BadRequestObjectResult>(page0Response.Result);
 
-            var nullSearchResponse = controller.Search(null);
-            Assert.IsType<BadRequestObjectResult>(nullSearchResponse.Result.Result);
+            var nullSearchResponse = await controller.Search(null);
+            Assert.IsType<BadRequestObjectResult>(nullSearchResponse.Result);
         }
 
         [Fact()]
@@ -66,14 +66,14 @@ namespace GitHubExplorer.Controllers.Tests
             var repo = reposPage.Items[0];
             Assert.Equal(2, repo.Id);
 
-            var user3Response = controller.SearchByUser("3");
-            Assert.IsType<NoContentResult>(user3Response.Result.Result);
+            var user3Response = await controller.SearchByUser("3");
+            Assert.IsType<NoContentResult>(user3Response.Result);
 
-            var page2Response = controller.SearchByUser("1", 2);
-            Assert.IsType<NoContentResult>(page2Response.Result.Result);
+            var page2Response = await controller.SearchByUser("1", 2);
+            Assert.IsType<NoContentResult>(page2Response.Result);
 
-            var page0Response = controller.SearchByUser("1", 0);
-            Assert.IsType<BadRequestObjectResult>(page0Response.Result.Result);
+            var page0Response = await controller.SearchByUser("1", 0);
+            Assert.IsType<BadRequestObjectResult>(page0Response.Result);
         }
 
         [Fact()]
@@ -85,8 +85,8 @@ namespace GitHubExplorer.Controllers.Tests
             var repo = repoResponse.Value;
             Assert.Equal(2, repo.Id);
 
-            var repo3Response = controller.Get(3);
-            Assert.IsType<NotFoundResult>(repo3Response.Result.Result);
+            var repo3Response = await controller.Get(3);
+            Assert.IsType<NotFoundResult>(repo3Response.Result);
         }
     }
 }
