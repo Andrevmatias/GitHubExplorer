@@ -21,15 +21,14 @@ namespace GitHubExplorer.Services
 
         public async Task<GitRepo> GetRepo(long id)
         {
-            try
-            {
-                var repo = await _client.Repository.Get(id);
-                return ConvertRepo(repo);
-            } 
-            catch (Octokit.NotFoundException)
-            {
-                return null;
-            }
+            var repo = await GetGitHubRepo(id);
+            return ConvertRepo(repo);
+        }
+
+        public async Task<GitRepoListItem> GetRepoAsListItem(long id)
+        {
+            var repo = await GetGitHubRepo(id);
+            return ConvertRepoListItem(repo);
         }
 
         public async Task<Page<GitRepoListItem>> GetReposPage(string filter, int page)
@@ -56,6 +55,18 @@ namespace GitHubExplorer.Services
             var userTotalPublicRepos = (await _client.User.Get(userId)).PublicRepos;
 
             return new Page<GitRepoListItem>(reposListItems, page, _RESULTS_PER_PAGE, userTotalPublicRepos);
+        }
+
+        private async Task<Repository> GetGitHubRepo(long id)
+        {
+            try
+            {
+                return await _client.Repository.Get(id);
+            }
+            catch (Octokit.NotFoundException)
+            {
+                return null;
+            }
         }
 
         private ApiOptions GetApiOptions(int page)

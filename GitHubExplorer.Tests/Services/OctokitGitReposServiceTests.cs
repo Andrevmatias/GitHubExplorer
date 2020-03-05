@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace GitHubExplorer.Services.Tests
 {
-    public class GitHubReposServiceTests
+    public class OctokitGitReposServiceTests
     {
         [Fact()]
         public async Task GetRepoTest()
@@ -21,6 +21,22 @@ namespace GitHubExplorer.Services.Tests
             Assert.Equal("GitHubExplorer", repo.Name);
 
             var nullRepo = await service.GetRepo(1243123412341234123);
+
+            Assert.Null(nullRepo);
+        }
+
+        [Fact()]
+        public async Task GetRepoAsListItemTest()
+        {
+            var service = new OctokitGitReposService();
+
+            var repoId = 243658391;
+
+            var repo = await service.GetRepoAsListItem(repoId);
+
+            Assert.Equal("GitHubExplorer", repo.Name);
+
+            var nullRepo = await service.GetRepoAsListItem(1243123412341234123);
 
             Assert.Null(nullRepo);
         }

@@ -22,6 +22,12 @@ namespace GitHubExplorer.Services
         /// <returns>Detalhes do repositório ou <c>null</c> caso o repositório não tenha sido encontrado</returns>
         Task<GitRepo> GetRepo(long id);
         /// <summary>
+        /// Retorna um repositório como um item de lista
+        /// </summary>
+        /// <param name="id">ID do repositório</param>
+        /// <returns>Item de lista do repositório ou <c>null</c> caso o repositório não tenha sido encontrado</returns>
+        Task<GitRepoListItem> GetRepoAsListItem(long id);
+        /// <summary>
         /// Retorna uma página de repositórios de um usuário
         /// </summary>
         /// <param name="userId">ID do usuário</param>

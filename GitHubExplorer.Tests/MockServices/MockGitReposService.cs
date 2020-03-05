@@ -57,6 +57,11 @@ namespace GitHubExplorer.Tests.MockServices
             return Task.FromResult(_repos.SingleOrDefault(e => e.Id == id));
         }
 
+        public Task<GitRepoListItem> GetRepoAsListItem(long id)
+        {
+            return Task.FromResult(ConvertToListItem(_repos.SingleOrDefault(e => e.Id == id)));
+        }
+
         public Task<Page<GitRepoListItem>> GetReposPage(string filter, int page)
         {
             var items = _repos
