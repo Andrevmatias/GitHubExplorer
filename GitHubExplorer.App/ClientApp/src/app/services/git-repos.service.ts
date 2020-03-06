@@ -2,32 +2,8 @@ import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Page } from './models/page.model';
-
-export interface GitRepoListItem {
-  id: number;
-  name: string;
-  description: string;
-  authorName: string;
-  starCount: number;
-  isFavorite: boolean;
-}
-
-export interface GitRepo {
-  id: number;
-  name: string;
-  description: string;
-  starCount: number;
-  author: GitUser;
-  openIssuesCount: number;
-  mainProgrammingLanguage: string;
-  creationDate: Date;
-  isFavorite: boolean;
-}
-
-export interface GitUser {
-  id: string;
-  name: string;
-}
+import { GitRepoListItem } from './models/git-repo-list-item.model';
+import { GitRepo } from './models/git-repo.model';
 
 @Injectable({
   providedIn: 'root'

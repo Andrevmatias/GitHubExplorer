@@ -1,9 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
-import { switchMap } from 'rxjs/operators';
-import { GitRepo, GitReposService, GitRepoListItem } from '../services/git-repos.service';
-import { Page } from '../services/models/page.model';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-not-found',

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
-import { GitRepoListItem } from '../services/git-repos.service';
 import { Page } from '../services/models/page.model';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { FavReposService } from '../services/fav-repos.service';
+import { GitRepoListItem } from '../services/models/git-repo-list-item.model';
 
 @Component({
   selector: 'app-favorites-list',

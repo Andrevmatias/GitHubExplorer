@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { GitRepoListItem, GitReposService } from '../services/git-repos.service';
+import { GitReposService } from '../services/git-repos.service';
 import { Page } from '../services/models/page.model';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { empty } from 'rxjs';
+import { GitRepoListItem } from '../services/models/git-repo-list-item.model';
 
 @Component({
   selector: 'app-home',

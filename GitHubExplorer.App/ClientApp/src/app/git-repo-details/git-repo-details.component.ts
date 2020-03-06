@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { switchMap } from 'rxjs/operators';
-import { GitRepo, GitReposService, GitRepoListItem } from '../services/git-repos.service';
+import { GitReposService } from '../services/git-repos.service';
 import { Page } from '../services/models/page.model';
 import { ActivatedRoute, ParamMap } from '@angular/router';
+import { GitRepoListItem } from '../services/models/git-repo-list-item.model';
+import { GitRepo } from '../services/models/git-repo.model';
 
 @Component({
   selector: 'app-git-repo-details',

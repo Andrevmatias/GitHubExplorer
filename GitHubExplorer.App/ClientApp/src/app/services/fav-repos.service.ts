@@ -2,7 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Page } from './models/page.model';
-import { GitRepoListItem } from './git-repos.service';
+import { GitRepoListItem } from './models/git-repo-list-item.model';
 
 @Injectable({
   providedIn: 'root'
