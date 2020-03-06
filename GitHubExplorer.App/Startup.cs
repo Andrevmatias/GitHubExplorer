@@ -34,10 +34,9 @@ namespace GitHubExplorer
 
         private void ConfigureApplicationServices(IServiceCollection services)
         {
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient((Func<IServiceProvider, IFavReposService>)(serviceProvider => {
-                var httpContextAcessor = serviceProvider.GetService<IHttpContextAccessor>();
-                return new InMemoryFavReposService(httpContextAcessor.HttpContext.Session.Id);
+                //TODO: Usar ID do usuário quando autenticação for implementada
+                return new InMemoryFavReposService("generic_user_id");
             }));
             services.AddTransient<IGitReposService, OctokitGitReposService>();
         }

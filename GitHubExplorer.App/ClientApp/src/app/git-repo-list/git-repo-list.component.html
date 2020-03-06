@@ -10,8 +10,11 @@
     <p class="mb-1">
       {{repo.description}}
     </p>
-    <small>
-    Autor: {{repo.authorName}}
-    </small>
+    <div class="d-flex w-100 justify-content-between">
+      <small>
+        Autor: {{repo.authorName}}
+      </small>
+      <fav-button [repoId]="repo.id" [(isFavorite)]="repo.isFavorite"></fav-button>
+    </div>
   </li>
 </ul>

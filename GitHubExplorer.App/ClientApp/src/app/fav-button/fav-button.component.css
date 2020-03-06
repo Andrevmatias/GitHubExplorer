@@ -1,0 +1,8 @@
+button {
+    color: #ffd300;
+    font-size: 2rem;
+}
+
+button:hover {
+  color: #ffac00;
+}

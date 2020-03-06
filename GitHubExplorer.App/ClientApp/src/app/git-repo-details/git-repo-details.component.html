@@ -10,23 +10,26 @@
     Voltar
   </button>
 
-  <div *ngIf="repo" class="mb-3">
-    <h2>{{repo.name}}</h2>
+  <div *ngIf="repo" class="d-flex w-100 justify-content-between mb-3">
+    <div>
+      <h2>{{repo.name}}</h2>
 
-    <p>
-      {{repo.description}}
-    </p>
+      <p>
+        {{repo.description}}
+      </p>
 
-    <dl>
-      <dt>Autor:</dt>
-      <dd *ngIf="repo.author">{{repo.author.name}}</dd>
-      <dt>Issues abertas:</dt>
-      <dd>{{repo.openIssuesCount}}</dd>
-      <dt>Linguagem Principal:</dt>
-      <dd>{{repo.mainProgrammingLanguage ? repo.mainProgrammingLanguage : '(Não informada)'}}</dd>
-      <dt>Data de Criação:</dt>
-      <dd>{{repo.creationDate | date:'dd/MM/yyyy HH:mm'}}</dd>
-    </dl>
+      <dl>
+        <dt>Autor:</dt>
+        <dd *ngIf="repo.author">{{repo.author.name}}</dd>
+        <dt>Issues abertas:</dt>
+        <dd>{{repo.openIssuesCount}}</dd>
+        <dt>Linguagem Principal:</dt>
+        <dd>{{repo.mainProgrammingLanguage ? repo.mainProgrammingLanguage : '(Não informada)'}}</dd>
+        <dt>Data de Criação:</dt>
+        <dd>{{repo.creationDate | date:'dd/MM/yyyy HH:mm'}}</dd>
+      </dl>
+    </div>
+    <fav-button [repoId]="repo.id" [(isFavorite)]="repo.isFavorite"></fav-button>
   </div>
 
   <h2 class="h3 title-repositories-list">Outros repositórios do mesmo autor:</h2>
@@ -35,11 +38,15 @@
     <ul class="pagination">
       <li class="page-item" *ngIf="authorReposPage.number !== 1">
         <button class="page-link"
-           (click)="loadPreviousPage()">Anterior</button>
+                (click)="loadPreviousPage()">
+          Anterior
+        </button>
       </li>
       <li class="page-item" *ngIf="!authorReposPage.isLast">
         <button class="page-link"
-           (click)="loadNextPage()">Próxima</button>
+                (click)="loadNextPage()">
+          Próxima
+        </button>
       </li>
     </ul>
   </nav>
