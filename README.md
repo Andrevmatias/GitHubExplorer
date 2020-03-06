@@ -4,7 +4,7 @@ Aplicativo Web para busca de repositórios no GitHub
 
 ## Tecnologias e Bibliotecas Utilizadas
 
-###Back-end
+### Back-end
 
 **[ASP.NET Core 3.1](https://dotnet.microsoft.com/):** Framework multi-plataforma para desenvolvimento de aplicativos web. A linguagem usada foi C#. 
 
@@ -24,7 +24,7 @@ Aplicativo Web para busca de repositórios no GitHub
 
 **[Font Awesome](https://fontawesome.com/):** Pacote de ícones para Web.
 
-##Para Executar Localmente:
+## Para Executar Localmente:
 
 1. Instale o ASP.NET Core SDK 3.1: <https://dotnet.microsoft.com/download/dotnet-core/3.1>
 2. Instale o Node.js e o NPM: <https://nodejs.org/>
@@ -35,7 +35,7 @@ dotnet run
 
 Deve ser exibido o endereço e a porta onde o programa está sendo executado.
 
-###Para executar os testes:
+### Para executar os testes:
 Navegue até a pasta "GitHubExplorer.Tests" e execute
 ```
 dotnet test
@@ -47,7 +47,6 @@ dotnet test
 ```
 docker build -t andrevm-github-explorer .
 ```
-para gerar a imagem.
 3. Execute 
 ```
 docker run -p 127.0.0.1:8080:80/tcp andrevm-github-explorer
