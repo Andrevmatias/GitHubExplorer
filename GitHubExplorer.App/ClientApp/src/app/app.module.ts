@@ -32,6 +32,7 @@ const routes = [
     HomeComponent,
     GitRepoListComponent,
     GitRepoDetailsComponent,
+    FavoritesListComponent,
     FavButtonComponent,
     NotFoundComponent
   ],

@@ -1,5 +1,5 @@
 import { FavReposService } from '../services/fav-repos.service';
-import { Output, Input, Component, EventEmitter } from '@angular/core';
+import { Output, Input, Component, EventEmitter, HostListener } from '@angular/core';
 
 @Component({
   selector: 'fav-button',
@@ -33,5 +33,10 @@ export class FavButtonComponent {
       this.favReposService.setAsNotFav(this.repoId)
         .subscribe(_ => this.isFavorite = false);
     }
+  }
+
+  @HostListener("click", ["$event"])
+  public onClick(event: any): void {
+    event.stopPropagation();
   }
 }

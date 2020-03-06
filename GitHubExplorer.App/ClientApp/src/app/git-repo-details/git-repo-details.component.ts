@@ -19,7 +19,7 @@ export class GitRepoDetailsComponent implements OnInit {
   constructor(
     private gitReposService: GitReposService,
     private route: ActivatedRoute,
-    private location: Location
+    public location: Location
   ) { }
 
   ngOnInit(): void {

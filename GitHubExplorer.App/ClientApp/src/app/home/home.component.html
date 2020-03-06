@@ -1,11 +1,3 @@
-<div class="row">
-  <div class="col text-right">
-    <a [routerLink]="['/favorites']">
-      Ver Favoritos
-    </a>
-  </div>
-</div>
-
 <form #searchForm="ngForm" (ngSubmit)="search(searchForm)">
   <div class="form-group">
     <div class="input-group">
@@ -54,7 +46,7 @@
   </nav>
   <div class="col">
     <p class="text-right">
-      {{gitReposPage.totalItems | number:'1.0-0':'pt'}} repositórios encontrados
+      {{gitReposPage.totalItems | number:'1.0-0':'pt'}} repositório(s) encontrado(s)
     </p>
   </div>
 </div>

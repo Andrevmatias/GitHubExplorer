@@ -1,25 +1,30 @@
-<div class="box-carregando" *ngIf="searching">
+<div class="box-carregando" *ngIf="loading">
   <img src="/github_logo.png" width="100" height="100" class="d-inline-block align-top" alt="GitHub Explorer Logo">
   <p>Carregando...</p>
 </div>
 
-<h1>Favoritos</h1>
+<button class="btn btn-primary mb-4" (click)="location.back()">
+  <i class="fas fa-arrow-left"></i>
+  Voltar
+</button>
 
-<div class="jumbotron" *ngIf="(!gitReposPage || !gitReposPage.items.length) && !searching">
+<h1 class="mb-3">Favoritos</h1>
+
+<div class="jumbotron mt-2" *ngIf="(!favReposPage || !favReposPage.items.length) && !loading">
   <p class="text-center h5">Nenhum repositório favorito</p>
 </div>
 
-<div *ngIf="gitReposPage">
+<div *ngIf="favReposPage && favReposPage.items.length">
   <div class="row">
     <nav class="col">
       <ul class="pagination">
-        <li class="page-item" *ngIf="gitReposPage.number !== 1">
+        <li class="page-item" *ngIf="favReposPage.number !== 1">
           <button class="page-link"
                   (click)="loadPreviousPage()">
             Anterior
           </button>
         </li>
-        <li class="page-item" *ngIf="!gitReposPage.isLast">
+        <li class="page-item" *ngIf="!favReposPage.isLast">
           <button class="page-link"
                   (click)="loadNextPage()">
             Próxima
@@ -29,28 +34,28 @@
     </nav>
     <div class="col">
       <p class="text-right">
-        {{gitReposPage.totalItems | number:'1.0-0':'pt'}} repositórios encontrados
+        {{favReposPage.totalItems | number:'1.0-0':'pt'}} favorito(s)
       </p>
     </div>
   </div>
 
   <div class="row mb-3">
     <div class="col">
-      <git-repo-list *ngIf="gitReposPage" [repos]="gitReposPage.items">
+      <git-repo-list *ngIf="favReposPage" [repos]="favReposPage.items">
       </git-repo-list>
     </div>
   </div>
 
-  <div class="row" *ngIf="gitReposPage">
+  <div class="row" *ngIf="favReposPage">
     <nav class="col">
       <ul class="pagination">
-        <li class="page-item" *ngIf="gitReposPage.number !== 1">
+        <li class="page-item" *ngIf="favReposPage.number !== 1">
           <button class="page-link"
                   (click)="loadPreviousPage()">
             Anterior
           </button>
         </li>
-        <li class="page-item" *ngIf="!gitReposPage.isLast">
+        <li class="page-item" *ngIf="!favReposPage.isLast">
           <button class="page-link"
                   (click)="loadNextPage()">
             Próxima
