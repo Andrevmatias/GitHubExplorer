@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { GitRepoListItem } from '../services/git-repos.service';
+import { GitRepoListItem } from '../../services/git-repos.service';
 
 @Component({
   selector: 'git-repo-list',

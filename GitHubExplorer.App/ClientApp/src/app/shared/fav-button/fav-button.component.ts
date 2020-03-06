@@ -1,4 +1,4 @@
-import { FavReposService } from '../services/fav-repos.service';
+import { FavReposService } from '../../services/fav-repos.service';
 import { Output, Input, Component, EventEmitter, HostListener } from '@angular/core';
 
 @Component({
